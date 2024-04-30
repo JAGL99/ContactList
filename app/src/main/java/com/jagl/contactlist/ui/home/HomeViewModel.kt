@@ -29,12 +29,20 @@ class HomeViewModel @Inject constructor(
         data class Error(val errorMessage: String) : UiState()
     }
 
-    fun getContacts(isInit: Boolean) = viewModelScope.launch {
-        getAllContacts().collectLatest {
-            if (it.isEmpty()) {
+    fun getContacts(isInit: Boolean, query: String = "") = viewModelScope.launch {
+        getAllContacts().collectLatest { contacts ->
+            if (contacts.isEmpty()) {
                 _uiState.value = UiState.EmptySearch(isInit)
             } else {
-                _uiState.value = UiState.Content(it.map { it.toSearchContact() })
+                val searcherItems = if (query.isEmpty() || query.isBlank()) {
+                    contacts.map { it.toSearchContact() }
+                } else {
+                    contacts
+                        .filter { it.getFullName().lowercase().contains(query.lowercase()) }
+                        .map { it.toSearchContact() }
+                }
+                if (searcherItems.isEmpty()) _uiState.value = UiState.EmptySearch(isInit)
+                else _uiState.value = UiState.Content(searcherItems)
             }
         }.runCatching {
             _uiState.value = UiState.Error("Falla al consultar los contactos")

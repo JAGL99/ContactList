@@ -1,6 +1,7 @@
 package com.jagl.contactlist.ui.home
 
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.jagl.contactlist.databinding.FragmentHomeBinding
@@ -29,11 +30,18 @@ class HomeFragment : BaseFragment() {
 
     override fun setUpViews() {
         viewModel.getContacts(true)
+        binding.etSearcher.addTextChangedListener {
+            makeSearch(it.toString())
+        }
         binding.fabAddContact.setOnClickListener {
             navigateToDirection(
                 HomeFragmentDirections.actionHomeFragmentToCreateContactFragment()
             )
         }
+    }
+
+    private fun makeSearch(query: String) {
+        viewModel.getContacts(false, query)
     }
 
     override fun setUpObservables() {

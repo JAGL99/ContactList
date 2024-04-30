@@ -12,7 +12,9 @@ data class Contact(
     val phone: String,
     val gender: String,
     val avatar: String,
-)
+) {
+    fun getFullName() = "$name $fatherLastName $motherLastName"
+}
 
 fun Contact.toSearchContact(): ContactItem = ContactItem(this)
 

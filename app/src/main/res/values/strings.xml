@@ -4,8 +4,6 @@
     <string name="searcher_empty">No se encontraron resultados</string>
     <string name="generic_error_message">Ocurrio un error, favor de intentarlo mas tarde</string>
     <string name="add_contact">Agregar contacto</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name_title">Nombre</string>
     <string name="father_lastname_title">Apellido paterno</string>
     <string name="mother_lastname_title">Apellido materno</string>

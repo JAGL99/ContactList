@@ -1,6 +1,5 @@
 package com.jagl.contactlist.ui.dialog
 
-import android.R
 import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
@@ -8,6 +7,7 @@ import android.os.Bundle
 import android.view.Window
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import com.jagl.contactlist.R
 import com.jagl.contactlist.databinding.DialogMessageBinding
 
 internal class MessageDialog(context: Context) : Dialog(context) {
@@ -27,7 +27,7 @@ internal class MessageDialog(context: Context) : Dialog(context) {
         window?.setBackgroundDrawable(
             ColorDrawable(
                 ContextCompat.getColor(
-                    context, R.color.transparent
+                    context, android.R.color.transparent
                 )
             )
         )
@@ -41,8 +41,8 @@ internal class MessageDialog(context: Context) : Dialog(context) {
 
     private fun setType(type: Type) {
         val drawableId = when (type) {
-            Type.ERROR -> com.jagl.contactlist.R.drawable.ic_error
-            Type.WARNING, Type.SUCCESS -> com.jagl.contactlist.R.drawable.ic_warning
+            Type.ERROR -> R.drawable.ic_error
+            Type.WARNING, Type.SUCCESS -> R.drawable.ic_warning
         }
 
         binding.ivIcon.setImageDrawable(

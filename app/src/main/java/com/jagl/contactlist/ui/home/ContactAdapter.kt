@@ -73,8 +73,7 @@ class ContactAdapter(private val onClickListener: (ContactItem) -> Unit) :
 
         private fun bindContact(item: ContactItem, binding: ItemContactBinding) {
             val contact = item.contact
-            binding.tvFullName.text =
-                "${contact.name} ${contact.fatherLastName} ${contact.motherLastName}"
+            binding.tvFullName.text = contact.getFullName()
             binding.root.setOnClickListener {
                 onClickListener(item)
             }
